@@ -6,5 +6,22 @@ defmodule MyList do
 
   def sum_without_accumulator([]), do: 0
   def sum_without_accumulator([head | tail]), do: head + sum_without_accumulator(tail)
+
+
+  def map([], _func), do: []
+  def map([ head | tail ], func), do: [ func.(head) | map(tail, func) ]
+
+  def reduce([], value, _) do
+    value
+  end
+
+  def reduce([head | tail], value, fun) do
+    reduce(tail, fun.(head, value), fun)
+  end
+
+  def mapsum(list, fun) do
+    map(list, fun) |> reduce(0, &(&1 + & 2))
+  end
 end
 
+14 = MyList.mapsum [1, 2, 3], &(&1 * &1)
