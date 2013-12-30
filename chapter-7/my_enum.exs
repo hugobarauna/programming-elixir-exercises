@@ -33,8 +33,18 @@ defmodule MyEnum do
   def take(list, count), do: hd(split(list, count))
 end
 
+defmodule Primes do
+  import MyEnum
+
+  def up_to(n) do
+
+  end
+end
+
 list = [2, 4, 6]
 true = MyEnum.all?(list, &(rem(&1, 2) == 0))
 [2] = MyEnum.filter([1, 2, 3], fn(x) -> rem(x, 2) == 0 end)
 [[1, 2, 3], [4, 5, 6]] = MyEnum.split([1,2,3,4,5,6], 3)
 [1, 2, 3] = MyEnum.take([1, 2, 3, 4, 5, 6], 3)
+
+#[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37] = Primes.up_to(40)

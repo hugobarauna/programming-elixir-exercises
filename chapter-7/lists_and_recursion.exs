@@ -53,6 +53,10 @@ defmodule MyList do
   def span(from, to) do
     [from | span(from + 1, to)]
   end
+
+  def flatten([]), do: []
+  def flatten([ head | tail ]), do: flatten(head) ++ flatten(tail)
+  def flatten(head), do: [ head ]
 end
 
 14 = MyList.mapsum [1, 2, 3], &(&1 * &1)
@@ -62,3 +66,5 @@ end
 'elixir' = MyList.caesar('ryvkve', 13)
 
 [4, 5, 6, 7, 8] = MyList.span(4, 8)
+
+[1, 2, 3, 4, 5, 6] = MyList.flatten([ 1,  [ 2,  3,  [4] ],  5,  [[[6]]]])
