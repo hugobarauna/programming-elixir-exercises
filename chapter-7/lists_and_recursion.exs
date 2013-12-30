@@ -36,8 +36,19 @@ defmodule MyList do
   defp _max([head | tail], max)
     when max < head,
     do: _max(tail, head)
+
+  def caesar([], _n), do: []
+
+  def caesar([ head | tail ], n)
+    when head + n <= ?z,
+    do: [ head + n | caesar(tail, n) ]
+
+  def caesar([ head | tail ], n),
+    do: [ head + n - 26 | caesar(tail, n) ]
 end
 
 14 = MyList.mapsum [1, 2, 3], &(&1 * &1)
 
 7 = MyList.max([6, 3, 7, 1])
+
+'elixir' = MyList.caesar('ryvkve', 13)
