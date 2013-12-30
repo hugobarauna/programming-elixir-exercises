@@ -68,3 +68,20 @@ end
 [4, 5, 6, 7, 8] = MyList.span(4, 8)
 
 [1, 2, 3, 4, 5, 6] = MyList.flatten([ 1,  [ 2,  3,  [4] ],  5,  [[[6]]]])
+
+
+defmodule Primes do
+  import MyList
+
+  def up_to(n) do
+    lc x inlist span(2, n), prime?(x), do: x
+  end
+
+  def prime?(2), do: true
+
+  def prime?(x) do
+    Enum.all?(span(2, x - 1), &(rem(x, &1) !== 0))
+  end
+end
+
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37] = Primes.up_to(40)
