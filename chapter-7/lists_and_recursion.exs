@@ -22,6 +22,22 @@ defmodule MyList do
   def mapsum(list, fun) do
     map(list, fun) |> reduce(0, &(&1 + & 2))
   end
+
+  def max([head | tail]) do
+    _max(tail, head)
+  end
+
+  def _max([], max), do: max
+
+  def _max([head | tail], max)
+    when max >= head,
+    do: _max(tail, max)
+
+  def _max([head | tail], max)
+    when max < head,
+    do: _max(tail, head)
 end
 
 14 = MyList.mapsum [1, 2, 3], &(&1 * &1)
+
+7 = MyList.max([6, 3, 7, 1])
