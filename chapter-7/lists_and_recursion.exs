@@ -27,13 +27,13 @@ defmodule MyList do
     _max(tail, head)
   end
 
-  def _max([], max), do: max
+  defp _max([], max), do: max
 
-  def _max([head | tail], max)
+  defp _max([head | tail], max)
     when max >= head,
     do: _max(tail, max)
 
-  def _max([head | tail], max)
+  defp _max([head | tail], max)
     when max < head,
     do: _max(tail, head)
 end
