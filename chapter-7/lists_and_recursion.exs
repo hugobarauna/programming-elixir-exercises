@@ -45,6 +45,14 @@ defmodule MyList do
 
   def caesar([ head | tail ], n),
     do: [ head + n - 26 | caesar(tail, n) ]
+
+  def span(from, to)
+    when from === to,
+    do: [to]
+
+  def span(from, to) do
+    [from | span(from + 1, to)]
+  end
 end
 
 14 = MyList.mapsum [1, 2, 3], &(&1 * &1)
@@ -52,3 +60,5 @@ end
 7 = MyList.max([6, 3, 7, 1])
 
 'elixir' = MyList.caesar('ryvkve', 13)
+
+[4, 5, 6, 7, 8] = MyList.span(4, 8)
